@@ -11,12 +11,12 @@ const contentE = document.getElementById("content");
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
+let newDate = d.getMonth() + 1 + '.' + d.getDate() + '.' + d.getFullYear();
 
 // Define api url
 const baseUrl = 'http://localhost:8000/project/data/'
 const apiKey = "d0d621329803df021535d736b4c745ae"
-const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&q=`;
+const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&units=metric&q=`;
 
 // handle api
 
@@ -25,9 +25,9 @@ const getMostRecent = () => {
         .then(res => res.json())
         .then(data => {
             const { temp, date, content } = data;
-            tempE.innerText =  temp ? `Temp: ${temp}K` : "";
-            dateE.innerText = date ?`Date: ${date}`: "";
-            contentE.innerText = content ? `Content: ${content}` : "";
+            tempE.innerHTML =  temp ? `Temp: ${temp} Celius` : "";
+            dateE.innerHTML = date ?`Date: ${date}`: "";
+            contentE.innerHTML = content ? `Content: ${content}` : "";
         })
         .catch(e => console.log(e));
 }
